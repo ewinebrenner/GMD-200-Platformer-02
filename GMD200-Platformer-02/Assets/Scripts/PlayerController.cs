@@ -8,12 +8,14 @@ public class PlayerController : MonoBehaviour
     public PlayerControllerSettings settings;
 
     private Rigidbody2D _rb;
+    private Animator _animator;
     float _xInput;
     bool _jumpPressed;//Was the jump button pressed this frame?
     bool _onGround;
     private void Awake()
     {
         _rb = GetComponent<Rigidbody2D>();
+        _animator = GetComponentInChildren<Animator>();
     }
     void Jump()
     {
@@ -28,6 +30,8 @@ public class PlayerController : MonoBehaviour
         {
             _jumpPressed = true;
         }
+        _animator.SetBool("OnGround", _onGround);
+
         //_rb.AddForce(Vector2.right * xInput * walkSpeed);
     }
     private void FixedUpdate()
