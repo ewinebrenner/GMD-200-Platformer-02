@@ -606,11 +606,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: acf753743d44f764bb25703d8ea384c2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  walkSpeed: 8
-  jumpSpeed: 12
-  groundLayer:
-    serializedVersion: 2
-    m_Bits: 1
+  settings: {fileID: 11400000, guid: 83c455fbd312988438d7d962d09d8ab0, type: 2}
 --- !u!50 &1143774545
 Rigidbody2D:
   serializedVersion: 4

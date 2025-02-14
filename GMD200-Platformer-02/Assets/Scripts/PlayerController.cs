@@ -5,9 +5,7 @@ using UnityEngine;
 [RequireComponent(typeof(Rigidbody2D))]
 public class PlayerController : MonoBehaviour
 {
-    public float walkSpeed = 6.0f;
-    public float jumpSpeed = 10.0f;
-    public LayerMask groundLayer;
+    public PlayerControllerSettings settings;
 
     private Rigidbody2D _rb;
     float _xInput;
@@ -19,7 +17,7 @@ public class PlayerController : MonoBehaviour
     }
     void Jump()
     {
-        _rb.velocity = new Vector2(_rb.velocity.x, jumpSpeed);
+        _rb.velocity = new Vector2(_rb.velocity.x, settings.jumpSpeed);
         _jumpPressed = false;
     }
     // Update is called once per frame
@@ -34,14 +32,14 @@ public class PlayerController : MonoBehaviour
     }
     private void FixedUpdate()
     {
-        RaycastHit2D rayHit = Physics2D.Raycast(transform.position, Vector2.down, 1.5f, groundLayer);
+        RaycastHit2D rayHit = Physics2D.Raycast(transform.position, Vector2.down, 1.5f, settings.groundLayer);
 
         _onGround = (rayHit.collider != null);
 
         Debug.DrawLine(transform.position, transform.position + Vector3.down * 1.5f, _onGround ? Color.green : Color.red);
 
 
-        _rb.velocity = new Vector2(_xInput * walkSpeed, _rb.velocity.y);
+        _rb.velocity = new Vector2(_xInput * settings.walkSpeed, _rb.velocity.y);
         if (_jumpPressed && _onGround)
         {
             Jump();
